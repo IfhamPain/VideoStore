@@ -1,0 +1,30 @@
+
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+  <%= link_to "Video Store", root_path, id: "logo" %>
+
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Users", '/admin/users' %></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? || superuser_signed_in? %>
+          <% if superuser_signed_in? %>
+            <li><%= link_to "Edit profile", edit_superuser_registration_path %></li>
+            <li><%= link_to "Sign out", destroy_superuser_session_path, method: :delete, class: "logout-btn"%></li>
+          <% else %>
+            <li><%= link_to "Edit profile", edit_user_registration_path %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "logout-btn"%></li>
+          <% end %>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

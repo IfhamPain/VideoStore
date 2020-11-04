@@ -36,6 +36,12 @@ yarn-debug.log*
 .yarn-integrity
 .browserslistrc
 config/database.yml
+.idea/
 /tmp/
 /storage/
-/.idea/
+tmp/cache/bootsnap-load-path-cache
+.generators
+.rakeTasks
+log/development.log
+/.idea/workspace.xml
+true
