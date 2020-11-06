@@ -4,5 +4,7 @@ FactoryBot.define do
     last_name  { "user" }
     email { "memberuser1@test.com" }
     password { "asdasd"   }
+    gender { User.genders[:male]}
+    role { User.roles[:member] }
   end
 end

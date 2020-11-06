@@ -3,22 +3,22 @@
 
   <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, :maxlength=>"50"%>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, :maxlength=>"50" %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 40, :maxlength=>"255" %>
   </div>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", size: 40, :minlength=>"6" %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -27,7 +27,7 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", size: 40, :minlength=>"6" %>
   </div>
 
   <div class="field">
@@ -42,14 +42,14 @@
 
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.text_area :address, cols: "40", rows: "4", :maxlength=>"300"%>
   </div>
 
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
-
-
+  <!-- Moved "Destroy" action to edit view so user can accurately delete the relevant user!-->
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to "Back", :back %>
 </div>

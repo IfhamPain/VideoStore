@@ -1,40 +1,35 @@
 <div class="container">
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td><strong>Full Name:</strong></td>
+      <td><%= @user.fullname %></td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td><strong>Address:</strong></td>
+      <td><%= @user.address %></td>
+    </tr>
+    <tr>
+      <td><strong>Gender:</strong></td>
+      <td><%= @user.gender %></td>
+    </tr>
+    <tr>
+      <td><strong>Role:</strong></td>
+      <td><%= @user.role %></td>
+    </tr>
+    <tr>
+      <td><strong>Active:</strong></td>
+      <td><%= @user.active %></td>
+    </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @user.gender %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @user.active %>
-</p>
-
+  <!-- Moved "Destroy" action to show view so user can accurately delete the relevant user!-->
 <%= link_to 'Edit', edit_user_path(@user) %> |
-
+<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', users_path %>
 </div>

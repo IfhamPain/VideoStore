@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    # User Search using Scopes
+    search_users
+    #Export users to csv
+    export_csv
   end
 
   def create
@@ -46,10 +49,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def export_csv
+    respond_to do |format|
+      format.html
+      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+    end
+  end
+
   private
 
   # Setting up allowed parameters
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address, :gender, :role, :active,:password,:password_confirmation)
   end
+  def filtering_params(params)
+    params.slice(:fname_search, :lname_search, :email_search, :role_search, :gender_search)
+  end
+
+  def search_users
+    @users = User.filter(params.slice(:fname, :lname, :email, :role, :gender))
+  end
+
 end
