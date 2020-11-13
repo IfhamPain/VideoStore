@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :date_of_birth %>
+    <%= f.date_select :date_of_birth, as: :date, start_year: Date.today.year - 200 , value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
+  </div>
+  <div>
+    <%= link_to "Remove", '#', class: "remove_fields" %>
+  </div>
+</div>

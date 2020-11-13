@@ -1,0 +1,43 @@
+<div class="container">
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td><strong>Title:</strong></td>
+      <td><%= @movie.title %></td>
+    </tr>
+    <tr>
+      <td><strong>Description:</strong></td>
+      <td><%= @movie.description.html_safe %></td>
+    </tr>
+    <tr>
+      <td><strong>Genre:</strong></td>
+      <td class="align-middle"><% @movie.genres.each do |c| %>
+          <%= c.genre %>
+          <br>
+        <% end %>
+    </tr>
+    <tr>
+      <td><strong>Content:</strong></td>
+      <td><%= @movie.content %></td>
+    </tr>
+    <tr>
+      <td><strong>Thumbnail:</strong></td>
+      <td class="align-middle">
+        <%= image_tag @movie.thumbnail.variant(resize: "300 x300") if @movie.thumbnail.attached? %>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Cast:</strong></td>
+      <td class="align-middle"><% @movie.actors.each do |c| %>
+          <%= c.name %>
+          <br>
+        <% end %>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Moved "Destroy" action to show view so user can accurately delete the relevant user!-->
+  <%= link_to 'Edit', edit_movie_path(@movie) %> |
+  <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', movies_path %>
+</div>

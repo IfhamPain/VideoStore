@@ -1,0 +1,10 @@
+<%= form_with model: @movie, local: true do |f| %>
+  <fieldset>
+    <%= f.fields_for :actors do |actors_form| %>
+      <%= render "actor_fields", f: actors_form %>
+    <% end %>
+    <%= link_to_add_fields "Add New", f, :actors %>
+  </fieldset>
+<br><br>
+  <%= f.submit %>
+<% end %>

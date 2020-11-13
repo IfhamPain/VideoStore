@@ -1,5 +1,8 @@
 
 Rails.application.routes.draw do
+  get 'movies/index'
+  get 'movies/create'
+  get 'movies/edit'
   get 'users/index'
   devise_for :superusers,path:'superuser', controllers: { registrations: "superusers/registrations", sessions: "superusers/sessions"}
   #devise_for :users,path:'admin'
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :superusers
+  resources :movies
 
   get '/admin/users',   to: 'users#index'
   get '/admin/sign_up', to: 'users/registrations#new'

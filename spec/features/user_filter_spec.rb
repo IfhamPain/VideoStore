@@ -1,8 +1,10 @@
 require "rails_helper"
+require 'database_cleaner'
 
 RSpec.feature "User Filter", :type => :feature do
 
   before :all do
+
     @user = create(:user)
     @fname = "member"
     @lname = "user"

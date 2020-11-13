@@ -1,0 +1,50 @@
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<div class="container">
+  <%= form_for(@movie) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :maxlength=>"50"%>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :maxlength=>"50" %>
+    </div>
+    <br>
+
+    <div class="field form-group">
+      <%= f.label :genre %><br/>
+      <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :genre do |b| %>
+        <label class="checkbox-inline">
+          <%= b.check_box %>
+          <%= b.label %><br>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.select :content, Movie.contents.keys, {} %>
+    </div>
+    <br>
+
+    <div class="field">
+      <%= f.label :thumbnail %><br />
+      <%= f.file_field :thumbnail%>
+    </div>
+    <br>
+
+    <div class="field form-group" id="testid">
+          <%= f.label "Actors" %><br/>
+      <%= f.collection_select :actor_ids, Actor.all, :id, :name, {}, {multiple: true, class: 'template-example'} %>
+    </div>
+<!--Rendering the nested form for creating new actors-->
+    <%= render "form"%>
+
+    <br>
+  <% end %>
+  <!-- Moved "Destroy" action to edit view so user can accurately delete the relevant user!-->
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to "Back", :back %>
+</div>

@@ -1,0 +1,22 @@
+<% @movies.each do |movie| %>
+  <tr>
+    <td class="align-middle"><%= movie.title %></td>
+    <td class="align-middle">
+      <%= image_tag movie.thumbnail.variant(resize: "100 x100") if movie.thumbnail.attached? %>
+    </td>
+    <td class="align-middle"><%= movie.description.html_safe %></td>
+    <td class="align-middle"><% movie.genres.each do |c| %>
+        <%= c.genre %>
+        <br>
+      <% end %>
+    </td>
+    <td class="align-middle"><%= movie.content %></td>
+    <td class="align-middle"><% movie.actors.each do |c| %>
+        <%= c.name %>
+        <br>
+      <% end %>
+    </td>
+    <td class="align-middle"><%= link_to 'Show', movie %></td>
+    <td class="align-middle"><%= link_to 'Edit', edit_movie_path(movie) %></td>
+  </tr>
+<% end %>

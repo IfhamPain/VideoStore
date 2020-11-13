@@ -3,10 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+# Use Puma as the app server
+gem 'bootstrap-sass', '3.4.1'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -17,12 +18,22 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-# Bootstrap for css
-gem 'bootstrap-sass', '3.4.1'
+
 #Devise for session handling and user handling
 gem 'devise'
 #Cancancan for access restrictions
 gem 'cancancan'
+#TinyMCE for Rich Text Editing
+gem 'tinymce-rails'
+#PG_Search for full text search using ts_vector
+gem "pg_search"
+#Mini_Magic for image processing
+gem 'mini_magick'
+
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+gem "select2-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -41,6 +52,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara', '>= 2.15'
   gem "factory_bot_rails"
+end
+
+group :test do
   gem 'database_cleaner-active_record'
 end
 

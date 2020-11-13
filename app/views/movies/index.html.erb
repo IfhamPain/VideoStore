@@ -1,0 +1,36 @@
+<h1 align="center">Movies</h1>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+<table class="table">
+  <thead class="thead-dark">
+  <div class="container pt-3">
+    <%= form_tag movies_path, :method => 'get' do %>
+      <div class="form-row">
+        <div class="col">
+          <%= text_field_tag :query, params[:query], placeholder:"Enter Title Description",class: "form-control" %>
+        </div>
+        <div class="col">
+          <%= submit_tag "Search", class: "btn btn-dark" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  </thead >
+  <div class="container pt-3">
+    <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Thumbnail</th>
+      <th>Description</th>
+      <th>Genre</th>
+      <th>Content</th>
+      <th>Cast</th>
+      <th colspan="3"><center>Customize</center></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= render 'movies/movie_table' %>
+    </tbody>
+  </div>
+</table>
