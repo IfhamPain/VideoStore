@@ -1,10 +1,63 @@
 <%= form_with model: @movie, local: true do |f| %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :maxlength=>"50"%>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :maxlength=>"50" %>
+  </div>
+  <br>
+
+  <div class="field form-group">
+    <%= f.label :genre %><br/>
+    <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :genre do |b| %>
+      <label class="checkbox-inline">
+        <%= b.check_box %>
+        <%= b.label %><br>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.select :content, Movie.contents.keys, {} %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label :thumbnail %><br />
+    <%= f.file_field :thumbnail%>
+  </div>
+  <br>
+
+  <div class="field form-group" id="testid">
+    <%= f.label "Actors" %><br/>
+    <%= f.collection_select :actor_ids, Actor.all, :id, :name, {}, {multiple: true, class: 'template-example'} %>
+  </div>
+
   <fieldset>
     <%= f.fields_for :actors do |actors_form| %>
       <%= render "actor_fields", f: actors_form %>
     <% end %>
     <%= link_to_add_fields "Add New", f, :actors %>
   </fieldset>
+
+  <div class="field form-group">
+    <%= f.label "Stocks" %><br/>
+    <%= f.fields_for :movie_copies do |movie_copy| %>
+      <%= movie_copy.fields_for(:movie_copy_type) do |mt| %>
+        <%= mt.text_field :copy_type %>
+      <% end %>
+      <%= movie_copy.text_field :stock %>
+      <br>
+    <% end %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= f.submit class:"btn btn-dark"%>
+  </div>
 <br><br>
-  <%= f.submit %>
 <% end %>

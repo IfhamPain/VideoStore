@@ -41,7 +41,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :description, :content, :address, :thumbnail, genre_ids:[], actor_ids:[], actors_attributes: [:id, :name, :date_of_birth, :_destroy])
+    params.require(:movie).permit(:title, :description, :content, :address, :thumbnail,  movie_copies_attributes: MovieCopy.attribute_names.map(&:to_sym), genre_ids:[], actor_ids:[], actors_attributes: [:id, :name, :date_of_birth, :_destroy])
   end
 
   def search_movies

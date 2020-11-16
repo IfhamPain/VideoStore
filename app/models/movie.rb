@@ -4,7 +4,10 @@ class Movie < ApplicationRecord
   has_many :actor_movies
   has_many :actors, through: :actor_movies
   has_one_attached :thumbnail
+  has_many :movie_copies, dependent: :destroy
+  has_many :movie_copy_types, through: :movie_copies
   accepts_nested_attributes_for :actors, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :movie_copies, allow_destroy: true, reject_if: :all_blank
 
   enum content: [:g, :pg, :pg13, :r, :nc17]
 
@@ -22,6 +25,11 @@ class Movie < ApplicationRecord
     if query.present?
       search(query)
     end
+  end
+
+  #Instance method to calculate on hand stock
+  def on_hand_stock(outstanding_orders)
+    self.movie_copies.pluck(:stock).sum - outstanding_orders
   end
 
 end

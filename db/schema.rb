@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_235756) do
+ActiveRecord::Schema.define(version: 2020_11_16_034928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,33 @@ ActiveRecord::Schema.define(version: 2020_11_10_235756) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "actors_movies", id: false, force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "actor_id", null: false
+    t.index ["actor_id"], name: "index_actors_movies_on_actor_id"
+    t.index ["movie_id"], name: "index_actors_movies_on_movie_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "genre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movie_copies", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "movie_copy_type_id"
+    t.integer "barcode"
+    t.float "copy_price"
+    t.integer "stock"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_copy_type_id"], name: "index_movie_copies_on_movie_copy_type_id"
+    t.index ["movie_id"], name: "index_movie_copies_on_movie_id"
+  end
+
+  create_table "movie_copy_types", force: :cascade do |t|
+    t.string "copy_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

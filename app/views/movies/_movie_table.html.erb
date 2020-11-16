@@ -16,6 +16,8 @@
         <br>
       <% end %>
     </td>
+    <td class="align-middle"><%= movie.on_hand_stock(0) %></td>
+
     <td class="align-middle"><%= link_to 'Show', movie %></td>
     <td class="align-middle"><%= link_to 'Edit', edit_movie_path(movie) %></td>
   </tr>

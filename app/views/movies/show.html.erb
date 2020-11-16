@@ -33,6 +33,14 @@
           <br>
         <% end %>
     </tr>
+    <tr>
+      <td><strong>Stock:</strong></td>
+      <td class="align-middle">
+        <% @movie.movie_copies.each do |movie_copy| %>
+          <%= MovieCopyType.find(movie_copy.movie_copy_type_id).copy_type %> | <%= movie_copy.stock %><br>
+        <%end %>
+          <br>
+        </tr>
     </tbody>
   </table>
 
