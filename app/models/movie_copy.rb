@@ -1,6 +1,8 @@
 class MovieCopy < ApplicationRecord
   belongs_to :movie
   belongs_to :movie_copy_type, optional: true
+  has_many :movie_copy_orders
+  has_many :orders, through: :movie_copy_orders
   accepts_nested_attributes_for :movie_copy_type
 
   validates :barcode, presence: true,length: {maximum:50}

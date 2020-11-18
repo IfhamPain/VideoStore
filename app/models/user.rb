@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   require 'csv'
+
+  has_many :orders, dependent: :destroy
+  has_many :movie_copies
+  accepts_nested_attributes_for :orders
+
+
   include Filterable #filtering
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

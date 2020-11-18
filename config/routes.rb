@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  get 'orders/show'
   get 'movies/index'
   get 'movies/create'
   get 'movies/edit'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :superusers
   resources :movies
+  resources :orders
 
   get '/admin/users',   to: 'users#index'
   get '/admin/sign_up', to: 'users/registrations#new'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_034928) do
+ActiveRecord::Schema.define(version: 2020_11_20_011952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2020_11_16_034928) do
     t.index ["movie_id"], name: "index_movie_copies_on_movie_id"
   end
 
+  create_table "movie_copy_orders", force: :cascade do |t|
+    t.bigint "movie_copy_id"
+    t.bigint "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_copy_id"], name: "index_movie_copy_orders_on_movie_copy_id"
+    t.index ["order_id"], name: "index_movie_copy_orders_on_order_id"
+  end
+
   create_table "movie_copy_types", force: :cascade do |t|
     t.string "copy_type"
     t.datetime "created_at", precision: 6, null: false
@@ -103,6 +112,19 @@ ActiveRecord::Schema.define(version: 2020_11_16_034928) do
     t.bigint "superuser_id"
     t.index ["superuser_id"], name: "index_movies_on_superuser_id"
     t.index ["user_id"], name: "index_movies_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "superuser_id"
+    t.datetime "order_date"
+    t.datetime "return_date"
+    t.datetime "expiration_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status", default: true
+    t.index ["superuser_id"], name: "index_orders_on_superuser_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "superusers", force: :cascade do |t|
@@ -143,4 +165,6 @@ ActiveRecord::Schema.define(version: 2020_11_16_034928) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "movies", "superusers"
   add_foreign_key "movies", "users"
+  add_foreign_key "orders", "superusers"
+  add_foreign_key "orders", "users"
 end

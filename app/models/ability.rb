@@ -9,7 +9,7 @@ class Ability
     if user.valid?
       case user
       when Superuser
-        can :manage, :all
+        can :manage, all
       when User
         if user.admin?
           can :manage, User

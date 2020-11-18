@@ -19,6 +19,12 @@ require('./nested-forms/removeFields')
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+document.addEventListener("turbolinks:load", function() {
+    $(document).on("click", "#close-show", function(){
+        $("#show").hide();
+    });
+});
+
 //AutoComplete JS using Select2
 document.addEventListener("turbolinks:load", function() {
     // $('#select_two').select2({

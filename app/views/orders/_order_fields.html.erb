@@ -1,0 +1,17 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+
+  <div>
+    <%= f.label :order_date %>
+    <%= f.date_select :order_date, include_blank: true, default: nil, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), start_year: Date.today.year - 10, class: 'form-control' %>
+  </div>
+
+  <div>
+    <% f.hidden_field :movie_copy_ids %>
+    <%= f.collection_select :movie_copy_ids, MovieCopy.all, :id, :barcode, {}, {multiple: true} %>
+  </div>
+
+  <div>
+    <%= link_to "Remove", '#', class: "remove_fields" %>
+  </div>
+</div>

@@ -45,3 +45,5 @@ tmp/cache/bootsnap-load-path-cache
 log/development.log
 /.idea/workspace.xml
 true
+/config/webpack/
+/config/webpacker.yml

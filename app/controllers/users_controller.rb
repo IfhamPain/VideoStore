@@ -25,19 +25,21 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    if @user.update(user_params)
-      redirect_to @user, notice: 'Update success'
-    else
-      render 'edit'
-    end
+      if @user.update(user_params)
+        redirect_to @user, notice: 'Update success'
+      else
+        render 'edit'
+      end
   end
 
   def show
     @user = User.find_by_id(params[:id])
+    $user_viewed_id = @user.id
   end
 
   def destroy
@@ -60,8 +62,9 @@ class UsersController < ApplicationController
 
   # Setting up allowed parameters
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :address, :gender, :role, :active,:password,:password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :address, :gender, :role, :active,:password,:password_confirmation)
   end
+
   def filtering_params(params)
     params.slice(:fname_search, :lname_search, :email_search, :role_search, :gender_search)
   end
@@ -69,5 +72,6 @@ class UsersController < ApplicationController
   def search_users
     @users = User.filter(params.slice(:fname, :lname, :email, :role, :gender))
   end
+
 
 end

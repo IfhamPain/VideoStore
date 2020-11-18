@@ -1,0 +1,5 @@
+<%= form_with model: @order, local: true do |form| %>
+  <%= render "order_fields", f: form %>
+  <br>
+  <%= form.submit class:"btn btn-dark"%>
+<% end %>

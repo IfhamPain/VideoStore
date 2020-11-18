@@ -25,10 +25,19 @@
       <td><strong>Active:</strong></td>
       <td><%= @user.active %></td>
     </tr>
+    <tr>
+      <td><strong>Order History:</strong></td>
+      <td><%= link_to 'Outstanding Orders', orders_show_path(user_id: @user.id, status: true), remote: true %> |
+      <%= link_to 'Historical Orders', orders_show_path(user_id: @user.id, status: false), remote: true %></td>
+    </tr>
     </tbody>
   </table>
 
+  <div id="show"></div>
+  <div id="new"></div>
   <!-- Moved "Destroy" action to show view so user can accurately delete the relevant user!-->
+
+<%= link_to 'Add New Order', new_order_path, remote: true %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', users_path %>
