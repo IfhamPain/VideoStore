@@ -1,24 +1,20 @@
 # README
+## MindVision Video Store
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Features covered in this application:
+* Task 1
+Designing the ERD
+* Task 2 
+Setting up the environment
+* Task 3
+Setting up the Admin System
+* Task 4
+Develop User Screens
+* Task 5
+Develop Admin Video screens
+* Task 6
+Video Stock/Current Order screens
+* Part 7
+Develop Admin Customer screens
+* Part 8
+Develop Admin Lookups

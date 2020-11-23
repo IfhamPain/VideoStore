@@ -1,12 +1,11 @@
 <h1 align="center">Users</h1>
-
 <table class="table">
   <thead class="thead-dark">
 <div class="container pt-3">
   <%= form_tag users_path, :method => 'get' do %>
     <div class="form-row">
       <div class="col">
-        <%= text_field_tag :fname, params[:fname], placeholder:"first name",class: "form-control" %>
+        <%= text_field_tag :fname, params[:fname], placeholder:"first name",class: "form-control " %>
       </div>
       <div class="col">
         <%= text_field_tag :lname, params[:lname], placeholder:"last name",class: "form-control"  %>
@@ -41,7 +40,6 @@
     <th colspan="2">Customize</th>
   </tr>
   </thead>
-
   <tbody>
   <% @users.each do |user| %>
     <tr>
@@ -54,14 +52,13 @@
       <td><%= user.active %></td>
       <td><%= link_to 'Outstanding Orders', orders_show_path(user_id: user.id, status: true), remote: true %></td>
       <td><%= link_to 'Historical Orders', orders_show_path(user_id: user.id, status: false), remote: true %></td>
-      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Show', admin_user_path(user.id) %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
     </tr>
   <% end %>
   </tbody>
   </div>
 </table>
-
+<%= paginate @users %>
 <div id="show"></div>
-
 <%= link_to "Export to CSV", users_path(format: "csv"), class: "btn btn-dark" %>

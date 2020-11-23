@@ -4,7 +4,6 @@ class Superusers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  before_action :disable_login, only: [:new, :create]
   def new
     super
   end

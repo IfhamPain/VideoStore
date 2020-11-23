@@ -1,0 +1,17 @@
+<%= form_with model: @genre, local: true do |f| %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th colspan="2">Genre</th>
+    </tr>
+    </thead>
+    <tr>
+      <td><%= f.label :genre %></td>
+      <td><%= f.text_field :genre, :maxlength=>"50"%></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <%= f.submit class:"btn btn-dark"%>
+  </div>
+  <br><br>
+<% end %>

@@ -1,55 +1,57 @@
 <div class="container">
 <%= form_for(@user) do |f| %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, :maxlength=>"50"%>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, :maxlength=>"50" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 40, :maxlength=>"255" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password", size: 40, :minlength=>"6" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", size: 40, :minlength=>"6" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.select :gender, User.genders.keys, {} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address, cols: "40", rows: "4", :maxlength=>"300"%>
-  </div>
-
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th colspan="2">Edit User</th>
+      </tr>
+      </thead>
+      <tr>
+        <td><%= f.label :first_name %></td>
+        <td><%= f.text_field :first_name%></td>
+      </tr>
+      <tr>
+        <td><%= f.label :last_name%></td>
+        <td> <%= f.text_field :last_name %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :email %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 40 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </td>
+        <td><%= f.password_field :password, autocomplete: "new-password", size: 40%></td>
+      </tr>
+      <tr>
+        <td><%= f.label :password_confirmation %></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", size: 40 %></td>
+      </tr>
+      <tr>
+        <% if superuser_signed_in? %>
+          <td><%= f.label :role %></td>
+          <td> <%= f.select :role, User.roles.keys, {} %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td><%= f.label :gender %></td>
+        <td><%= f.select :gender, User.genders.keys, {} %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :address %></td>
+        <td><%= f.text_area :address, cols: "40", rows: "4" %></td>
+      </tr>
+    </table>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class:"btn btn-dark" %>
   </div>
+    <br>
 <% end %>
   <!-- Moved "Destroy" action to edit view so user can accurately delete the relevant user!-->
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to "Back", :back %>
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-dark" %>
+<%= link_to "Back", :back , class:"btn btn-dark"%>
 </div>

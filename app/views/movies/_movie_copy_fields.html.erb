@@ -1,0 +1,23 @@
+<div class="nested-fields">
+  <div class="nested-fields form-group">
+    <%= f.hidden_field :_destroy %>
+    <div class="field form-group">
+      <%= f.collection_select :movie_copy_type_id, MovieCopyType.all, :id, :copy_type,{} %>
+    </div>
+    <div>
+      <%= f.label :barcode %>
+      <%= f.text_field :barcode %>
+    </div>
+    <div>
+      <%= f.label :copy_price %>
+      <%= f.number_field :copy_price %>
+    </div>
+    <div>
+      <%= f.label :stock %>
+      <%= f.number_field :stock %>
+    </div>
+    <div>
+      <%= link_to "Remove", '#', class: "remove_fields" %>
+    </div>
+  </div>
+</div>

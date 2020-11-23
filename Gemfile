@@ -29,11 +29,15 @@ gem 'tinymce-rails'
 gem "pg_search"
 #Mini_Magic for image processing
 gem 'mini_magick'
-
+#Adding jquery gems for rails
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+#Adding select2 gem for search filter
 gem "select2-rails"
+#Adding faker to seed database
+gem "faker"
+#Adding kaminari gem to limit no.of.items shown per page
+gem "kaminari"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

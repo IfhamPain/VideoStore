@@ -27,21 +27,27 @@ document.addEventListener("turbolinks:load", function() {
 
 //AutoComplete JS using Select2
 document.addEventListener("turbolinks:load", function() {
-    // $('#select_two').select2({
-    //     allowClear: true,
-    //     width: 200
-    //     // If you are using Bootstrap, please add　`theme: "bootstrap"` too.
-    // });
-        function formatExample(actor) {
-            var originalOption = $(actor.element);
-            return "   " + actor.text;
-        }
-        $('select.template-example').select2({
-            width: 'resolve',
-            formatResult: formatExample,
-            formatSelection: formatExample,
-            escapeMarkup: function(m) { return m; }
-        });
+    function formatExample(actor) {
+        var originalOption = $(actor.element);
+        return "   " + actor.text;
+    }
+    $('select.template-example').select2({
+        width: 'resolve',
+        formatResult: formatExample,
+        formatSelection: formatExample,
+        escapeMarkup: function(m) { return m; }
+    });
+
+    function formatExample(order) {
+        var originalOption = $(order.element);
+        return "   " + order.text;
+    }
+    $('select.template-example').select2({
+        width: 'resolve',
+        formatResult: formatExample,
+        formatSelection: formatExample,
+        escapeMarkup: function(m) { return m; }
+    });
 })
 
 document.addEventListener("turbolinks:load", function() {

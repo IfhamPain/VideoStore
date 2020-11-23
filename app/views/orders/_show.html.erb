@@ -1,6 +1,6 @@
 <hr>
-<h1>Order History</h1>
-<table class="table">
+<h3>Order History</h3>
+<table class="table table-striped">
   <thead class="thead-dark">
   <div class="container pt-3">
   <%= form_tag orders_show_path, :method => 'get' do %>
@@ -40,7 +40,6 @@
     <tbody>
     <% @orders.each do |order| %>
       <tr>
-
         <td><%= order.id %></td>
         <td><%= order.order_date %></td>
         <td><%= order.return_date %></td>
@@ -54,10 +53,11 @@
       </tr>
     <% end %>
     <tr>
-      <td><div class="btn" id="close-show"><h4>Hide</h4></div></td>
+      <td><div class="btn btn-dark" id="close-show"><h4>Hide</h4></div></td>
     </tr>
     </tbody>
   </div>
   </table>
+<hr style="border: 5px solid black; border-radius: 5px;">
 
 

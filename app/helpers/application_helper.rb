@@ -8,6 +8,13 @@ module ApplicationHelper
     return false
   end
 
+  def is_guest
+    if current_user.nil? && current_superuser.nil?
+      redirect_to root_path
+      flash[:danger] = "access denied"
+    end
+  end
+
   def disable_login
     if !current_user.nil? || !current_superuser.nil?
       redirect_to root_path

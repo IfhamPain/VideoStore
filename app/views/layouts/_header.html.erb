@@ -1,28 +1,43 @@
 
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
+<header class="navbar navbar-expand-lg navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
   <%= link_to "Video Store", root_path, id: "logo" %>
 
     <nav>
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Users", '/admin/users' %></li>
-        <li><%= link_to "Videos", movies_path %></li>
+        <% if user_signed_in? || superuser_signed_in? %>
+          <% if !is_not_admin_or_super? %>
+            <li><%= link_to "Users", '/admin/users' %></li>
+          <% end %>
+          <li><%= link_to "Videos", movies_path %></li>
+          <li><%= link_to "Actors", actors_path %></li>
+          <li><%= link_to "Genres", genres_path %></li>
+        <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? || superuser_signed_in? %>
           <% if superuser_signed_in? %>
-            <li><%= link_to "Edit profile", edit_superuser_registration_path %></li>
+            <li><%= link_to "Edit profile", edit_superuser_registration_path(current_superuser.id) %></li>
             <li><%= link_to "Sign out", destroy_superuser_session_path, method: :delete, class: "logout-btn"%></li>
           <% else %>
-            <li><%= link_to "Edit profile", edit_user_registration_path %></li>
+            <% if is_not_admin_or_super? %>
+              <li><%= link_to "Edit profile", edit_user_path(current_user.id) %></li>
+      <% end %>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "logout-btn"%></li>
-          <% end %>
+            <% if !is_not_admin_or_super? %>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <% end %>
+      <% end %>
         <% else %>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-        <% end %>
+          <% if !is_not_admin_or_super? %>
+            <li><%= link_to "Create user", new_user_registration_path %></li>
+          <% end %>
+          <li><%= link_to "Sign in", new_user_sign_in_path %></li>
+          <li><%= link_to "Admin sign in", new_user_session_path %></li>
+          <li><%= link_to "Superuser Sign in", new_superuser_session_path %></li>
+      <% end %>
       </ul>
     </nav>
   </div>

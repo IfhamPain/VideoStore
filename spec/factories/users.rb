@@ -2,10 +2,9 @@ FactoryBot.define do
   factory :user do
     first_name { "member" }
     last_name  { "user" }
-    email { "memberuser12@test.com" }
+    sequence(:email) { |n| "member#{n}@test.com" }
     password { "asdasd"   }
     address { "sample address"}
-    gender { User.genders[:male]}
-    role { User.roles[:member] }
+    gender { 0 }
   end
 end

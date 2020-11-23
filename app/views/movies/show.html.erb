@@ -41,11 +41,17 @@
         <%end %>
           <br>
         </tr>
+<!--    <tr>-->
+<!--      <td>Add Stocks</td>-->
+<!--      <td><%#=render 'movies/movie_copy_fields' %></td>-->
+<!--    </tr>-->
     </tbody>
   </table>
 
   <!-- Moved "Destroy" action to show view so user can accurately delete the relevant user!-->
-  <%= link_to 'Edit', edit_movie_path(@movie) %> |
-  <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', movies_path %>
+  <%= link_to 'Edit', edit_movie_path(@movie), class:"btn btn-dark"  %>
+  <% if !is_not_admin_or_super? %>
+  <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-dark"  %>
+  <% end %>
+  <%= link_to 'Back', movies_path, class:"btn btn-dark"  %>
 </div>

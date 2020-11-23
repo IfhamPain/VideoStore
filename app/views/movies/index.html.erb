@@ -1,4 +1,5 @@
 <h1 align="center">Movies</h1>
+<center><%= link_to "Add New", new_movie_path, class:"btn btn-dark" %></center>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>tinymce.init({selector:'textarea'});</script>
 <table class="table">
@@ -35,3 +36,4 @@
     </tbody>
   </div>
 </table>
+<%= paginate @movies %>

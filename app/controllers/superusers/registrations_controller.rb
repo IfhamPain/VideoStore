@@ -22,9 +22,18 @@ class Superusers::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @superuser = Superuser.find(1)
+    if params[:superuser][:password].blank?
+      params[:superuser].delete(:password)
+      params[:superuser].delete(:password_confirmation)
+    end
+    if @superuser.update(superuser_params)
+      redirect_to root_url, notice: 'Update success'
+    else
+      render 'edit'
+    end
+  end
 
   # DELETE /resource
   def destroy
@@ -53,18 +62,8 @@ class Superusers::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :address, :gender])
   end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :address, :gender])
+  # Setting up allowed parameters
+  def superuser_params
+    params.require(:superuser).permit(:first_name, :last_name, :email, :address, :gender, :active,:password,:password_confirmation)
   end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

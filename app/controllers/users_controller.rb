@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
+  include ApplicationHelper
 
   def index
+    if is_not_admin_or_super?
+      redirect_to root_url
+      flash[:notice] = 'Access Denied!'
+    end
     # User Search using Scopes
     search_users
+    @users = @users.order(:first_name).page(params[:page])
     #Export users to csv
     export_csv
   end
@@ -25,7 +31,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
@@ -72,6 +77,5 @@ class UsersController < ApplicationController
   def search_users
     @users = User.filter(params.slice(:fname, :lname, :email, :role, :gender))
   end
-
 
 end

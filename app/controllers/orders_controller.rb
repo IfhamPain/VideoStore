@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  include ApplicationHelper
+  before_action :is_guest, only: [:edit, :update, :index, :create, :new, :destroy]
+
   def show
     user_id = params[:user_id]
     status = params[:status]

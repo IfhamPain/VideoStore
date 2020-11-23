@@ -8,8 +8,8 @@ RSpec.feature "User Filter", :type => :feature do
     @user = create(:user)
     @fname = "member"
     @lname = "user"
-    @email = "memberuser1@test.com"
-    @gender = User.genders[:male]
+    @email = @user.email
+    @gender = @user.gender
     @role = User.roles[:member]
   end
 

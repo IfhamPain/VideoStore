@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     if(is_not_admin_or_super?)
+      flash[:info] = "Access Denied!"
       redirect_to root_path
       return
     end
