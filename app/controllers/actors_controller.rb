@@ -3,7 +3,7 @@ class ActorsController < ApplicationController
   before_action :is_guest, only: [:edit, :update, :index, :create, :new, :destroy]
 
   def index
-    @actors = Actor.order(:name).page(params[:page])
+    search_actors || @actors = Actor.order(:name).page(params[:page])
   end
 
   def create
@@ -51,7 +51,11 @@ class ActorsController < ApplicationController
   private
 
   def actor_params
-    params.require(:actor).permit(:name, :date_of_birth)
+    params.require(:actor).permit(:name, :date_of_birth, movie_ids: [])
+  end
+
+  def search_actors
+    @actors = Actor.filter(params.slice(:name)).order(:name).page(params[:page])
   end
 
   def set_actor

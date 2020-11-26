@@ -13,10 +13,12 @@
       <td><%= f.label :date_of_birth %></td>
       <td><%= f.date_select :date_of_birth, as: :date, start_year: Date.today.year - 200 , value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %></td>
     </tr>
+    <% if current_page?(new_actor_path) %>
     <tr>
       <td><%= f.label "Movies" %></td>
       <td><%= f.collection_select :movie_ids, Movie.all, :id, :title, {}, {multiple: true, class: 'template-example'} %></td>
     </tr>
+    <% end %>
   </table>
 
   <div class="actions">

@@ -26,4 +26,15 @@ RSpec.describe Actor, type: :model do
     @actor.date_of_birth= Date.tomorrow
     expect(@actor).to_not be_valid
   end
+
+  describe "Search Actor" do
+    it "Search by valid name" do
+      search_param = "actor name"
+      expect(@actor).to eq(Actor.search(search_param)[0])
+    end
+    it "Search by invalid name" do
+      search_param = "Potato"
+      expect(Actor.search(search_param)).to be(nil)
+    end
+  end
 end

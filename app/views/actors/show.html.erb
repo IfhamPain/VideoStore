@@ -1,4 +1,5 @@
 <div class="container">
+  <%= form_with model: @actor, local: true do |f| %>
   <table class="table table-striped">
     <tbody>
     <tr>
@@ -10,16 +11,15 @@
       <td><%= @actor.date_of_birth %></td>
     </tr>
     <tr>
-      <td><strong>Movies</strong></td>
-      <td class="align-middle"><% @actor.movies.each do |movie| %>
-       <%= movie.title %>
-        <br>
-        <% end %>
-      </td>
+      <td><%= f.label "Movies" %></td>
+      <td><%= f.collection_select :movie_ids, Movie.all, :id, :title, {}, {multiple: true, class: 'template-example'} %></td>
     </tr>
     </tbody>
   </table>
-
+    <div class="actions">
+      <%= f.submit class:"btn btn-dark"%>
+    </div>
+<% end %><br>
   <!-- Moved "Destroy" action to show view so user can accurately delete the relevant user!-->
   <%= link_to 'Edit', edit_actor_path(@actor), class:"btn btn-dark" %>
   <% if !is_not_admin_or_super? %>

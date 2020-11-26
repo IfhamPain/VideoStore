@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'users/index'
 
   devise_for :superusers,path:'superuser', controllers: { registrations: "superusers/registrations", sessions: "superusers/sessions"}
-  devise_for :users, path:'admin', controllers: { registrations: "users/registrations", sessions: "users/sessions" }
+  devise_for :users, path:'admin', controllers: { registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}
 
   devise_scope :admin do
     get '/admin/users',   to: 'users#index'
